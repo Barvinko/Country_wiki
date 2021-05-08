@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <meta charset="UTF-8">
+
+        <title>Country Wiki</title>
+    
+        <link rel="shortcut icon" href="./assets/images/favicon.png">
+
+        <link rel="stylesheet" href="./assets/css/bootstrap.css">
+
+        <link rel="stylesheet" href="./assets/css/font-awesome.css">
+
+        <link rel="stylesheet" href="./assets/css/style.css">
+
+        <script defer src="https://unpkg.com/vue@next"></script>
+
+        <script defer src="./assets/js/main.js"></script>
+
+    </head>
+    <body>
+       
+        <div class="container my-5" id='app'>
+
+            <h1>NBU Rates App</h1>
+
+            <div class='text-right'>
+                <input v-model='search' type="text" placeholder="Search...">
+            </div>
+            
+
+            <table class="table mt-4">
+                <thead>
+                  <tr>
+
+
+                    <th scope="col" @click="setSort('name')">
+                        Name
+
+                        <button v-if="sortField == 'name'" class='btn btn-outline-secondary'>
+                            <i class="fas" :class="{
+                                'fa-angle-up': sortDirection,
+                                'fa-angle-down': !sortDirection,
+                            }"></i>
+                        </button>
+                    </th>
+
+
+                    <th scope="col" @click="setSort('alpha3Code')">
+                        Code
+
+                        <button v-if="sortField == 'alpha3Code'" class='btn btn-outline-secondary'>
+                            <i class="fas" :class="{
+                                'fa-angle-up': sortDirection,
+                                'fa-angle-down': !sortDirection,
+                            }"></i>
+                        </button>
+                    </th>
+                                
+                    <th scope="col" @click="setSort('capital')">
+                        Capital
+
+                        <button v-if="sortField == 'capital'" class='btn btn-outline-secondary'>
+                            <i class="fas" :class="{
+                                'fa-angle-up': sortDirection,
+                                'fa-angle-down': !sortDirection,
+                            }"></i>
+                        </button>
+                    </th>
+
+                    <th scope="col">
+                        Flag
+                    </th>
+
+                    <th scope="col">
+                        Borders
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+
+            <!-- One Item -->
+            <tr v-for='item in showList'>
+                <th>{{item.name}}</th>
+                <td>{{item.alpha3Code}}</td>
+                <td>{{item.capital}}</td>
+                <td><img v-bind:src="item.flag" alt=""></td>
+                <td>
+                    <img v-for = 'i in item.borders' :src="getFlag(i)">
+                </td>
+                <!-- <td> 
+                    <button @click="show(item)" class='btn btn-primary w-100'>Details</button>
+                </td> -->
+            </tr>
+            <!-- End Of One Item -->
+
+                </tbody>
+              </table>
+<!-- 
+            <dialog id='rateDialog'>
+                <div class='text-right mb-4'>
+                    <i 
+                        id='rateDialogCloseBtn' 
+                        style='cursor: pointer;' 
+                        class="far fa-2x fa-times-circle"
+                        @click='closeDailog'
+                    ></i>
+                </div>
+                <h1>Code:  <span id='ccPlace'>{{selectedRate?.cc}}</h1>
+                <h2>Rate:  <span id='ratePlace'>{{selectedRate?.rate}} грн.</h2>
+                <h3>Title: <span id='txtPlace'>{{selectedRate?.txt}}</h3>
+                <h4>Date:  <span id='exchangedatePlace'>{{selectedRate?.exchangedate}}</span></h4>
+
+            </dialog> -->
+
+           
+
+        </div>
+        
+    </body>
+</html>
