@@ -37,18 +37,8 @@ Vue.createApp({
             return false;
             
         },
-        // show(item){
-        //     this.selectedRate = item;
-        //     rateDialog.showModal();
-        // },
-        // closeDailog(){
-        //     rateDialog.close();
-        // },
         getFlag(code){        
-            //console.log(this.allCCA[`${code}`].toLowerCase());
-            //let src = `https://flagcdn.com/w320/${this.allCCA[`${code}`].toLowerCase()}.png`;
             let src = `https://flagcdn.com/w320/${code}.png`;
-            //let src = `https://flagcdn.com/w320/${code.toLowerCase()}.png`
             return src;
         }
     },
@@ -79,10 +69,6 @@ Vue.createApp({
 
         console.log(data);
 
-        //this.countriesList = data;
-
-        //let allCCA;
-
         for (let i = 0; i < data.length; i++) {
             this.allCCA[`${data[i].cca3}`] = `${data[i].cca2}`;    
         }
@@ -93,10 +79,6 @@ Vue.createApp({
                 console.log("ANTARk");
                 continue;
             }
-            
-            // let key = "key";
-            // let value = "dat";
-            //this.allCCA[`${data[i].cca3}`] = `${data[i].cca2}`;
 
             this.countriesList[i] = {name:'', alpha3Code:'', capital:'', flag:'', borders:[]}
             this.countriesList[i].name = data[i].name.common;
@@ -104,9 +86,7 @@ Vue.createApp({
             this.countriesList[i].alpha3Code = data[i].cca3;
             this.countriesList[i].capital = data[i].capital[0];
             this.countriesList[i].flag = data[i].flags.png;
-            // this.countriesList[i].borders = data[i].borders;
             console.log(i);            
-            //console.log(data[i].borders.length); 
             console.log("borders" in data[i]); 
             
             if ("borders" in data[i]) {            
